@@ -246,7 +246,7 @@ export default function Home() {
               onClick={() => setActiveTab('home')}
               className="rounded-2xl bg-[#b91c1c] px-3 py-2 text-sm font-bold text-white"
             >
-              {reviewIds.length} tekrar
+              {reviewIds.length} Tekrar
             </button>
           </div>
         </header>
