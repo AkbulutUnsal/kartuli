@@ -63,6 +63,15 @@ const alphabet = [
   { letter: 'ჰ', reading: 'h', note: 'Türkçedeki h sesi gibi okunur.' },
 ];
 
+
+const georgianKeyboardRows = [
+  ['ა', 'ბ', 'გ', 'დ', 'ე', 'ვ', 'ზ'],
+  ['თ', 'ი', 'კ', 'ლ', 'მ', 'ნ', 'ო'],
+  ['პ', 'ჟ', 'რ', 'ს', 'ტ', 'უ', 'ფ'],
+  ['ქ', 'ღ', 'ყ', 'შ', 'ჩ', 'ც', 'ძ'],
+  ['წ', 'ჭ', 'ხ', 'ჯ', 'ჰ'],
+];
+
 const starterWords: Word[] = [
   { id: 1, georgian: 'სახლი', reading: 'sakhli', meaning: 'ev', category: 'Ders 1' },
   { id: 2, georgian: 'კაცი', reading: 'katsi', meaning: 'adam / erkek', category: 'Ders 1' },
@@ -173,7 +182,7 @@ export default function Home() {
     const correct = words[quizIndex % words.length] ?? starterWords[0];
     const others = words.filter((word) => word.id !== correct.id).slice(0, 3);
 
-    return [correct, ...others].sort((a, b) => a.meaning.localeCompare(b.meaning));
+    return [correct, ...others];
   }, [words, quizIndex]);
 
   function addToReview(id: number) {
@@ -623,3 +632,78 @@ function ReviewBox({
     </div>
   );
 }
+
+
+function GeorgianInput({
+  label,
+  value,
+  onChange,
+}: {
+  label: string;
+  value: string;
+  onChange: (value: string) => void;
+}) {
+  function addCharacter(character: string) {
+    onChange(value + character);
+  }
+
+  function removeLastCharacter() {
+    onChange(value.slice(0, -1));
+  }
+
+  function addSpace() {
+    onChange(value + ' ');
+  }
+
+  return (
+    <label className="block">
+      <span className="mb-1 block text-sm font-bold text-black/60">{label}</span>
+
+      <input
+        value={value}
+        onChange={(event) => onChange(event.target.value)}
+        className="georgian-text w-full rounded-2xl border border-black/10 bg-[#f7f3ed] px-4 py-3 font-bold outline-none focus:border-[#b91c1c]"
+      />
+
+      <div className="mt-3 rounded-2xl border border-black/10 bg-white p-3">
+        <p className="mb-3 text-xs font-bold text-black/50">Gürcüce klavye</p>
+
+        <div className="space-y-2">
+          {georgianKeyboardRows.map((row, rowIndex) => (
+            <div key={rowIndex} className="grid grid-cols-7 gap-2">
+              {row.map((character) => (
+                <button
+                  key={character}
+                  type="button"
+                  onClick={() => addCharacter(character)}
+                  className="georgian-text rounded-xl bg-[#f7f3ed] px-2 py-2 text-lg text-[#202124]"
+                >
+                  {character}
+                </button>
+              ))}
+            </div>
+          ))}
+        </div>
+
+        <div className="mt-3 grid grid-cols-2 gap-2">
+          <button
+            type="button"
+            onClick={addSpace}
+            className="rounded-xl bg-[#202124] px-3 py-2 text-sm font-bold text-white"
+          >
+            Boşluk
+          </button>
+
+          <button
+            type="button"
+            onClick={removeLastCharacter}
+            className="rounded-xl bg-black/5 px-3 py-2 text-sm font-bold text-black/60"
+          >
+            Sil
+          </button>
+        </div>
+      </div>
+    </label>
+  );
+}
+
