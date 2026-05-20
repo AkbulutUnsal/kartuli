@@ -337,7 +337,7 @@ export default function Home() {
           </div>
         </header>
 
-        <div className="mobile-scroll-space flex-1 px-5 pt-5">
+        <div className="mobile-scroll-space flex-1 px-5 pt-5 pb-32">
           {activeTab === 'home' && (
             <div className="space-y-5">
               <div className="rounded-[2rem] bg-[#202124] p-6 text-white shadow-xl">
@@ -748,7 +748,7 @@ function GeorgianInput({
       />
 
       {isKeyboardOpen && (
-        <div className="mt-3 w-full overflow-hidden rounded-2xl border border-black/10 bg-white p-3">
+        <div className="mt-3 w-full overflow-hidden rounded-2xl border border-black/10 bg-white p-2.5">
           <div className="mb-3 flex items-center justify-between gap-3">
             <p className="text-xs font-bold text-black/50">Gürcüce klavye</p>
             <p className="text-[11px] font-bold text-black/35">33 harf</p>
@@ -756,13 +756,13 @@ function GeorgianInput({
 
           <div className="space-y-1.5">
             {georgianKeyboardRows.map((row, rowIndex) => (
-              <div key={rowIndex} className="grid w-full grid-cols-7 gap-1.5">
+              <div key={rowIndex} className="grid w-full grid-cols-7 gap-1">
                 {row.map((character) => (
                   <button
                     key={character}
                     type="button"
                     onClick={() => addCharacter(character)}
-                    className="georgian-text min-w-0 rounded-xl bg-[#f7f3ed] px-0 py-2 text-base text-[#202124] active:bg-[#eadfce]"
+                    className="georgian-text min-w-0 rounded-lg bg-[#f7f3ed] px-0 py-1.5 text-sm font-bold text-[#202124] active:bg-[#eadfce]"
                   >
                     {character}
                   </button>
@@ -771,11 +771,11 @@ function GeorgianInput({
             ))}
           </div>
 
-          <div className="mt-3 grid grid-cols-2 gap-2">
+          <div className="mt-2 grid grid-cols-2 gap-2">
             <button
               type="button"
               onClick={addSpace}
-              className="rounded-xl bg-[#202124] px-3 py-2 text-sm font-bold text-white"
+              className="rounded-xl bg-[#202124] px-3 py-1.5 text-sm font-bold text-white"
             >
               Boşluk
             </button>
@@ -783,7 +783,7 @@ function GeorgianInput({
             <button
               type="button"
               onClick={removeLastCharacter}
-              className="rounded-xl bg-black/5 px-3 py-2 text-sm font-bold text-black/60"
+              className="rounded-xl bg-black/5 px-3 py-1.5 text-sm font-bold text-black/60"
             >
               Sil
             </button>
