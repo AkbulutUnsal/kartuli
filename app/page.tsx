@@ -28,20 +28,39 @@ type Note = {
 };
 
 const alphabet = [
-  { letter: 'ა', reading: 'a', note: 'Türkçedeki a sesi gibi.' },
-  { letter: 'ბ', reading: 'b', note: 'Türkçedeki b sesi gibi.' },
-  { letter: 'გ', reading: 'g', note: 'Türkçedeki g sesi gibi.' },
-  { letter: 'დ', reading: 'd', note: 'Türkçedeki d sesi gibi.' },
-  { letter: 'ე', reading: 'e', note: 'Türkçedeki e sesi gibi.' },
-  { letter: 'ი', reading: 'i', note: 'Türkçedeki i sesi gibi.' },
-  { letter: 'კ', reading: 'k', note: 'Sert k sesi.' },
-  { letter: 'ლ', reading: 'l', note: 'Türkçedeki l sesi gibi.' },
-  { letter: 'მ', reading: 'm', note: 'Türkçedeki m sesi gibi.' },
-  { letter: 'ნ', reading: 'n', note: 'Türkçedeki n sesi gibi.' },
-  { letter: 'ო', reading: 'o', note: 'Türkçedeki o sesi gibi.' },
-  { letter: 'ს', reading: 's', note: 'Türkçedeki s sesi gibi.' },
-  { letter: 'ტ', reading: 't', note: 'Sert t sesi.' },
-  { letter: 'ყ', reading: 'q / sert k', note: 'Gırtlaktan gelen sert k/q arası ses.' },
+  { letter: 'ა', reading: 'a', note: 'Türkçedeki a sesi gibi okunur.' },
+  { letter: 'ბ', reading: 'b', note: 'Türkçedeki b sesi gibi okunur.' },
+  { letter: 'გ', reading: 'g', note: 'Türkçedeki g sesi gibi okunur.' },
+  { letter: 'დ', reading: 'd', note: 'Türkçedeki d sesi gibi okunur.' },
+  { letter: 'ე', reading: 'e', note: 'Türkçedeki e sesi gibi okunur.' },
+  { letter: 'ვ', reading: 'v', note: 'Türkçedeki v sesi gibi okunur.' },
+  { letter: 'ზ', reading: 'z', note: 'Türkçedeki z sesi gibi okunur.' },
+  { letter: 'თ', reading: 't', note: 'Nefesli t sesiyle okunur.' },
+  { letter: 'ი', reading: 'i', note: 'Türkçedeki i sesi gibi okunur.' },
+  { letter: 'კ', reading: 'k', note: 'Sert k sesiyle okunur.' },
+  { letter: 'ლ', reading: 'l', note: 'Türkçedeki l sesi gibi okunur.' },
+  { letter: 'მ', reading: 'm', note: 'Türkçedeki m sesi gibi okunur.' },
+  { letter: 'ნ', reading: 'n', note: 'Türkçedeki n sesi gibi okunur.' },
+  { letter: 'ო', reading: 'o', note: 'Türkçedeki o sesi gibi okunur.' },
+  { letter: 'პ', reading: 'p', note: 'Sert p sesiyle okunur.' },
+  { letter: 'ჟ', reading: 'j', note: 'J sesine yakın okunur.' },
+  { letter: 'რ', reading: 'r', note: 'Türkçedeki r sesi gibi okunur.' },
+  { letter: 'ს', reading: 's', note: 'Türkçedeki s sesi gibi okunur.' },
+  { letter: 'ტ', reading: 't', note: 'Sert t sesiyle okunur.' },
+  { letter: 'უ', reading: 'u', note: 'Türkçedeki u sesi gibi okunur.' },
+  { letter: 'ფ', reading: 'p / f arası', note: 'Nefesli p sesine yakındır.' },
+  { letter: 'ქ', reading: 'k', note: 'Nefesli k sesiyle okunur.' },
+  { letter: 'ღ', reading: 'ğ / gh', note: 'Boğazdan gelen yumuşak ğ sesine yakındır.' },
+  { letter: 'ყ', reading: 'q / sert k', note: 'Gırtlaktan gelen sert k/q arası sesle okunur.' },
+  { letter: 'შ', reading: 'ş', note: 'Türkçedeki ş sesi gibi okunur.' },
+  { letter: 'ჩ', reading: 'ç', note: 'Nefesli ç sesiyle okunur.' },
+  { letter: 'ც', reading: 'ts', note: 'ts birleşik sesiyle okunur.' },
+  { letter: 'ძ', reading: 'dz', note: 'dz birleşik sesiyle okunur.' },
+  { letter: 'წ', reading: 'ts / sert ts', note: 'Daha sert ts sesiyle okunur.' },
+  { letter: 'ჭ', reading: 'ç / sert ç', note: 'Daha sert ç sesiyle okunur.' },
+  { letter: 'ხ', reading: 'h / kh', note: 'Boğazdan gelen h/kh sesine yakındır.' },
+  { letter: 'ჯ', reading: 'c', note: 'Türkçedeki c sesi gibi okunur.' },
+  { letter: 'ჰ', reading: 'h', note: 'Türkçedeki h sesi gibi okunur.' },
 ];
 
 const starterWords: Word[] = [
@@ -325,11 +344,11 @@ export default function Home() {
                 <h3 className="font-black">Yeni Kelime Ekle</h3>
 
                 <div className="mt-4 space-y-3">
-                  <Input
-                    label="Gürcüce kelime"
-                    value={wordForm.georgian}
-                    onChange={(value) => setWordForm({ ...wordForm, georgian: value })}
-                  />
+                 <GeorgianInput
+  label="Gürcüce kelime"
+  value={wordForm.georgian}
+  onChange={(value) => setWordForm({ ...wordForm, georgian: value })}
+/>
                   <Input
                     label="Okunuş"
                     value={wordForm.reading}
@@ -429,7 +448,11 @@ export default function Home() {
               <div className="rounded-[1.8rem] border border-black/10 bg-white p-5 shadow-sm">
                 <div className="space-y-3">
                   <Input label="Ders / konu başlığı" value={noteForm.title} onChange={(value) => setNoteForm({ ...noteForm, title: value })} />
-                  <Input label="Gürcüce" value={noteForm.georgian} onChange={(value) => setNoteForm({ ...noteForm, georgian: value })} />
+                  <GeorgianInput
+  label="Gürcüce"
+  value={noteForm.georgian}
+  onChange={(value) => setNoteForm({ ...noteForm, georgian: value })}
+/>
                   <Input label="Okunuş" value={noteForm.reading} onChange={(value) => setNoteForm({ ...noteForm, reading: value })} />
                   <Input label="Türkçe anlam" value={noteForm.meaning} onChange={(value) => setNoteForm({ ...noteForm, meaning: value })} />
                   <Input label="Kendi notunuz" value={noteForm.note} onChange={(value) => setNoteForm({ ...noteForm, note: value })} />
